@@ -1,7 +1,10 @@
 package com.restaurant.manager.controller;
 
+import com.restaurant.manager.dto.AddMenuItemRequest;
+import com.restaurant.manager.dto.AddMenuItemResponse;
 import com.restaurant.manager.dto.AddTablesRequest;
 import com.restaurant.manager.dto.AddTablesResponse;
+import com.restaurant.manager.entity.MenuItemEntity;
 import com.restaurant.manager.service.ManagerService;
 import com.restaurant.manager.entity.TableEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +29,16 @@ public class ManagerController {
     public ResponseEntity<List<TableEntity>> getTablesForRestaurant(@PathVariable Long restaurantId) {
         List<TableEntity> tables = managerService.fetchAllTablesForRestaurant(restaurantId);
         return ResponseEntity.ok(tables);
+    }
+
+    @PostMapping("/addMenuItem")
+    public AddMenuItemResponse addMenuItem(@RequestBody AddMenuItemRequest request){
+        AddMenuItemResponse response = managerService.addMenuItem(request);
+        return response;
+    }
+
+    @GetMapping("/getMenu/{restaurantId}")
+    public ResponseEntity<List<MenuItemEntity>> getMenuForRestaurant(@PathVariable Long restaurantId){
+        return ResponseEntity.ok(managerService.fetchAllMenuItems(restaurantId));
     }
 }

@@ -1,14 +1,32 @@
 package com.restaurant.manager.entity;
 
-import java.util.Map;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
+@Data
 public class Order {
-    Long orderId;
-    Map<MenuItemEntity,Integer> ordered_items_quantity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    boolean isBillGenerated;
-    boolean isBillPaid;
+    @Column(name = "restaurant_id")
+    private Long restaurantId;
 
-    double billAmount;
-    double discount;
+    @Column(name = "table_id")
+    private Long tableId;
+
+    @OneToMany(mappedBy = "order_items", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "bill_amount")
+    private double billAmount;
+
+    //double discount;
 }

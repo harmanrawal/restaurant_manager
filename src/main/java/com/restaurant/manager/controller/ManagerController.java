@@ -41,4 +41,5 @@ public class ManagerController {
     public ResponseEntity<List<MenuItemEntity>> getMenuForRestaurant(@PathVariable Long restaurantId){
         return ResponseEntity.ok(managerService.fetchAllMenuItems(restaurantId));
     }
+
 }

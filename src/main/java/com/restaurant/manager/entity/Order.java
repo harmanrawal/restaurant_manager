@@ -19,7 +19,7 @@ public class Order {
     @Column(name = "table_id")
     private Long tableId;
 
-    @OneToMany(mappedBy = "order_items", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
     @Column(name = "status")

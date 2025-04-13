@@ -70,4 +70,11 @@ public class ManagerService {
     public List<MenuItemEntity> fetchAllMenuItems(Long restaurantId){
         return menuRepository.findByRestaurantId(restaurantId);
     }
+
+    public List<TableEntity> getAllTables(Long restaurantId){
+        if(!restaurantExists(restaurantId)){
+            throw new IllegalArgumentException("Restaurant not found");
+        }
+        return tableRepository.findByRestaurantId(restaurantId);
+    }
 }

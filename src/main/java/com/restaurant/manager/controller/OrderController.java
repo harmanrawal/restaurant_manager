@@ -18,4 +18,10 @@ public class OrderController {
         Order createdOrder = orderService.createOrder(order);
         return ResponseEntity.ok(createdOrder);
     }
+
+    @GetMapping("/getOrderFromTable/{restaurantId}/{tableId}")
+    public ResponseEntity<Order> getOrderFromTable(@PathVariable Long restaurantId, @PathVariable Long tableId){
+        Order foundOrder = orderService.getOrderFromTable(restaurantId,tableId);
+        return ResponseEntity.ok(foundOrder);
+    }
 }

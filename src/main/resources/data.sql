@@ -6,5 +6,6 @@ VALUES (1, 4, 'FREE'),
        (1, 6, 'RESERVED');
 
 INSERT INTO menu_items (restaurant_id, name, price, description, availability,category) VALUES
-(1, 'Margherita Pizza', 12.99, 'Classic cheese pizza with a thin crust', true,'Continental'),
-(1, 'Pepperoni Pizza', 15.99, 'Loaded with pepperoni and mozzarella cheese', true,'Continental')
+(1, 'Margherita Pizza', 9.99, 'Classic cheese pizza with a thin crust', true,'Continental'),
+(1, 'Pepperoni Pizza', 15.99, 'Loaded with pepperoni and mozzarella cheese', true,'Continental'),
+(1, 'Veggie Delight Pizza', 12.99, 'Loaded with fresh vegetables and cheese', true, 'Continental');

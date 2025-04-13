@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/restaurant/manager")
 public class ManagerController {
@@ -41,5 +41,4 @@ public class ManagerController {
     public ResponseEntity<List<MenuItemEntity>> getMenuForRestaurant(@PathVariable Long restaurantId){
         return ResponseEntity.ok(managerService.fetchAllMenuItems(restaurantId));
     }
-
 }

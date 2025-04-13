@@ -1,0 +1,41 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17 for backend
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build Spring Boot backend
+        working-directory: backend
+        run: ./mvnw clean package -DskipTests
+
+      - name: Build and start containers
+        run: docker-compose up -d --build
+
+      - name: Wait for backend/frontend
+        run: |
+          echo "Waiting for services..."
+          until curl -s http://localhost:8080/restaurant/manager/tables/1; do sleep 5; done
+          until curl -s http://localhost:3000; do sleep 5; done
+
+      - name: Run Playwright Tests
+        working-directory: frontend
+        run: |
+          npm install
+          npx playwright install --with-deps
+          npx playwright test

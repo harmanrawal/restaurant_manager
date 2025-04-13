@@ -20,8 +20,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Ensure mvnw is executable
+        run: chmod +x ./mvnw
+
       - name: Build Spring Boot backend
-        working-directory: /
         run: ./mvnw clean package -DskipTests
 
       - name: Build and start containers

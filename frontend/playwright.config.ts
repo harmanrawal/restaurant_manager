@@ -5,7 +5,7 @@ export default defineConfig({
   projects: [
     {
       name: 'Chromium',
-      use: {  headless: true, browserName: 'chromium' },
+      use: {  baseURL: process.env.BASE_URL || 'http://localhost:3000', headless: true, browserName: 'chromium' },
     },
     /*{
       name: 'Firefox',

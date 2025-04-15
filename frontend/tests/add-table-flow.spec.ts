@@ -2,12 +2,14 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Add Table Management Flow', () => {
 
+  const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
   test('should add tables and verify them in View Tables page', async ({ page }) => {
     const quantity = '2';
     const maxCapacity = '6';
 
     // Go to the Add Tables page
-    await page.goto('/tables');
+    await page.goto('${baseUrl}/tables');
+    await page.waitForSelector('input[type="number"]');
 
     // Fill out the form
     await page.fill('input[type="number"]:nth-of-type(1)', quantity);
@@ -18,7 +20,7 @@ test.describe('Add Table Management Flow', () => {
     await page.waitForTimeout(1000);
 
     // Go to View Tables page
-    await page.goto('/tableView');
+    await page.goto('${baseUrl}/tableView');
 
     // Validate table list exists
     const tableList = page.locator('ul > li');

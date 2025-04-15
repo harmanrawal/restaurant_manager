@@ -9,6 +9,7 @@ test.describe('Add Table Management Flow', () => {
 
     // Go to the Add Tables page
     await page.goto('${baseUrl}/tables');
+    await page.waitForLoadState('networkidle'); // ✅ Wait for full load
     await page.waitForSelector('input[type="number"]');
 
     // Fill out the form

@@ -33,7 +33,7 @@ test.describe('Add Table Management Flow', () => {
   });
 
   test('should not allow submitting empty table form', async ({ page }) => {
-    await page.goto('/tables');
+    await page.goto('${baseUrl}/tables');
     await page.click('button[type="submit"]');
 
     // Browser validation will prevent navigation or form submission

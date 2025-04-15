@@ -2,13 +2,12 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Add Table Management Flow', () => {
 
-  const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
-  test('should add tables and verify them in View Tables page', async ({ page }) => {
+    test('should add tables and verify them in View Tables page', async ({ page }) => {
     const quantity = '2';
     const maxCapacity = '6';
 
     // Go to the Add Tables page
-    await page.goto('${baseUrl}/tables');
+    await page.goto('/tables');
     await page.waitForLoadState('networkidle'); // ✅ Wait for full load
     await page.waitForSelector('input[type="number"]');
 
@@ -21,7 +20,7 @@ test.describe('Add Table Management Flow', () => {
     await page.waitForTimeout(1000);
 
     // Go to View Tables page
-    await page.goto('${baseUrl}/tableView');
+    await page.goto('/tableView');
 
     // Validate table list exists
     const tableList = page.locator('ul > li');
@@ -34,7 +33,7 @@ test.describe('Add Table Management Flow', () => {
   });
 
   test('should not allow submitting empty table form', async ({ page }) => {
-    await page.goto('${baseUrl}/tables');
+    await page.goto('/tables');
     await page.click('button[type="submit"]');
 
     // Browser validation will prevent navigation or form submission

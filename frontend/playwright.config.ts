@@ -1,20 +1,13 @@
 import { defineConfig } from '@playwright/test';
 
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+
 export default defineConfig({
-  testDir: './tests',
-  projects: [
-    {
-      name: 'Chromium',
-      use: {  baseURL: process.env.BASE_URL || 'http://localhost:3000', headless: true, browserName: 'chromium' },
-    },
-    /*{
-      name: 'Firefox',
-      use: { browserName: 'firefox' },
-    },*/
-  ],
+  timeout: 60000,
   use: {
-    baseURL: 'http://localhost:3000',
-    headless: false, // set to true in CI
+    baseURL: baseUrl,
+    headless: true,
+    browserName: 'chromium',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },

@@ -1,6 +1,6 @@
 # backend/Dockerfile
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY target/restaurant-manager-backend.jar app.jar
+COPY target/manager-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -5,7 +5,7 @@ export default defineConfig({
   projects: [
     {
       name: 'Chromium',
-      use: { browserName: 'chromium' },
+      use: {  headless: true, browserName: 'chromium' },
     },
     /*{
       name: 'Firefox',
